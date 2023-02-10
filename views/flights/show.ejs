@@ -22,10 +22,22 @@
       <br>
     <% }); %>
   </ul>
+
+  <div>Tickets:</div>
+  <ul>
+    <li>Seat</li>
+    <li>Price</li>
+  </ul>
+  <br>
 </section>
 
+<h2>Add New Ticket:</h2>
+<form id="add-ticket-form">
+  <button><a href="/flights/<%= flight._id %>/tickets/new">New Ticket</a></button>
+</form>
+
 <!-- Add desination  -->
-<br><br><h2>Destinations</h2>
+<br><br><h2>Add New Destination:</h2>
 <br>
 <form id="add-dest-form" method="POST" action="/flights/<%= flight._id %>/destinations">
   <label>Arrival Date:</label>

@@ -1,4 +1,5 @@
 const Flight = require('../models/flight');
+const Ticket = require('../models/ticket');
 
 module.exports = {
   index,
@@ -30,20 +31,10 @@ function create(req, res) {
 }
 
 function show(req, res) {
-
   Flight.findById(req.params.id, function(err, flight) {
-    function dynamicSort(property) {
-      var sortOrder = 1;
-      if(property[0] === "-") {
-          sortOrder = -1;
-          property = property.substr(1);
-      }
-      return function (a,b) {
-          var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
-          return result * sortOrder;
-      }
-  }
-  flight.destinations.sort(dynamicSort("arrival"));
-    res.render('flights/show', { title: 'Flight Details', flight});
+    Ticket.find({flight: flight._id}, function(err, tickets) {
+      flight.destinations.sort((a,b) => (a.arrival > b.arrival) ? 1 : ((b.arrival > a.arrival) ? -1 : 0))
+      res.render('flights/show', { title: 'Flight Details', flight, tickets});
+    })
   })
 }

@@ -170,3 +170,10 @@ li {
 .departed {
   color: red
 }
+
+#add-ticket-form * {
+  font-size: 20px;
+  padding: 5px 5px 5px 0px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
