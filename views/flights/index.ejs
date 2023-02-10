@@ -1,0 +1,16 @@
+<%- include('../partials/header') %>
+
+    <ul>
+      <% flights.forEach(function(f) { %>
+        <% const departed = (f.departs <= Date.now()) ? 'departed' : '' %>
+        <br>
+        <li class=<%= departed %>><%= f.airline %></li>
+        <li class=<%= departed %>><%= f.airport %></li>
+        <li class=<%= departed %>><%= f.flightNo %></li>
+        <li class=<%= departed %>><%= f.departs %></li>
+        <a href="/flights/<%= f._id %>">DETAILS</a>
+        <li>_________________________________________</li>
+      <% }); %>
+    </ul>
+  
+<%- include('../partials/footer') %>
