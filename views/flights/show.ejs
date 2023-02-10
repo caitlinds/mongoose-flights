@@ -25,8 +25,11 @@
 
   <div>Tickets:</div>
   <ul>
-    <li>Seat</li>
-    <li>Price</li>
+    <% tickets.forEach((t) => { %>
+      <li><%= t.seat %></li>
+      <li><%= t.price %></li>
+      <br>
+    <% }); %>
   </ul>
   <br>
 </section>
