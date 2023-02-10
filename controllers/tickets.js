@@ -9,20 +9,20 @@ module.exports = {
 
 function newTicket(req, res) {
   Flight.findById(req.params.id, function(err, flight) {
-  res.render('tickets/new', { title: 'Add Ticket', flight});
+  res.render('tickets/new', { title: 'Add Ticket', flight });
   })
 }
 
-// function create(req, res) {
-//   Flight.findById(req.params.id, function(err, flight) {
-//     if (req.body.arrival) flight.destinations.push(req.body);
-//     flight.save(function(err) {
-//       // Step 5: Respond with a redirect because we've mutated data
-//       res.redirect(`/flights/${flight._id}`);
-//     });
-//   });
-// }
-
 function create(req, res) {
-  res.render('tickets/test', { title: "Test" })
+  Flight.findById(req.params.id, function(err, flight) {
+    const ticket = new Ticket(
+      { seat: req.body.seat,
+        price: req.body.price,
+        flight: flight._id
+      })
+    ticket.save(function(err) {
+      if (err) return res.redirect(`/flights/${flight._id}/tickets/new`);
+      res.redirect(`/flights/${flight._id}`);
+    })
+  })
 }

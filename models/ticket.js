@@ -14,6 +14,8 @@ const ticketSchema = new Schema({
         min: 0,
     },
     flight: {
+        //all ids we store here must be document ids
+        //...from the flight model
         type: Schema.Types.ObjectId,
         ref: 'Flight'
     }
