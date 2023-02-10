@@ -2,6 +2,7 @@
 
 <!-- Flight Details -->
 <section id="show-page">
+  <% const departed = (flight.departs <= Date.now()) ? 'departed' : '' %>
   <div>Airline: </div>
   <div><%= flight.airline %></div>
   <div>Airport: </div>
@@ -9,9 +10,9 @@
   <div>Flight Number: </div>
   <div><%= flight.flightNo %></div>
   <div>Departure: </div>
-  <div><%= flight.departs %></div>
+  <div class=<%= departed %>><%= flight.departs %></div>
   <div></div>
-  <div><%= flight.departs > Date.now() ? 'Departed' : 'Not Departed' %></div>
+  <div class=<%= departed %>><%= flight.departs < Date.now() ? 'DEPARTED' : 'NOT DEPARTED' %></div>
 
 <!-- List added destinations -->
   <div>Destinations:</div>
